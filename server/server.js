@@ -10,9 +10,12 @@ const contactRoute = require("./router/contact-router");
 app.use(express.json());
 app.use("/api/auth", AuthRoute);
 app.use("/api/form", contactRoute);
-app.use(errorMiddleware);
+
 
 const PORT = 5000;
+
+
+// app.use(errorMiddleware);
 
 connectDb().then(() => {
   app.listen(PORT, () => {
