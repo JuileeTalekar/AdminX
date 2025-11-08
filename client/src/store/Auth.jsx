@@ -1,24 +1,35 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext , useState} from "react";
 
-// ✅ create context
+// create context
 export const AuthContext = createContext();
 
-// ✅ provide context
+// provide context
 export const AuthProvider = ({ children }) => {
+    const [token, setToken] = useState(localStorage.getItem("token"));
 
   // function to store the token in local storage
   const storeTokenInLS = (serverToken) => {
     return localStorage.setItem("token", serverToken);
   };
 
+   let isLoggedIn = !!token;
+  console.log("token", token);
+  console.log("isLoggedin ", isLoggedIn);
+
+  //   to check whether is loggedIn or not
+  const LogoutUser = () => {
+    setToken("");
+    return localStorage.removeItem("token");
+  };
+
   return (
-    <AuthContext.Provider value={{ storeTokenInLS }}>
+    <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-// ✅ custom hook
+//  custom hook handeling useContext(consumer)
 export const useAuth = () => {
   const authContextValue = useContext(AuthContext);
   if (!authContextValue) {

@@ -7,7 +7,7 @@ import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
 import { Error } from "./pages/Error";
 import { Navbar} from "./components/Navbar";
-import{ Logout } from "./pages/Logout";
+import { Logo } from "./pages/Logo";
 
 
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/service" element={<Service />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/logout" element={<Logout />} />
+        <Route path="/logout" element={<Logo />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<Error />} />
       </Routes>
