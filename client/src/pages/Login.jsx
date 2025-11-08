@@ -1,10 +1,17 @@
   import { useState } from "react";
+  // import { useAuth } from "../store/auth";
+  import {useNavigate} from 'react-router-dom';
+  import { useAuth } from "../store/Auth.jsx";
  export const Login = () => {
    
     const [user, setUser] = useState({
     email: "",
     password: "",
   });
+
+  // const { saveTokenInLocalStr } = useAuth();
+  const navigate = useNavigate();
+  const { storeTokenInLS } = useAuth();
 
   const handleInput = (e) => {
     console.log(e);
@@ -18,9 +25,29 @@
   };
 
   // handle form on submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(user);
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+         setUser({ username: "", email: "", phone: "", password: "" });
+        console.log("after login: ", responseData);
+        // toast.success("Registration Successful");
+        storeTokenInLS(responseData.token);
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

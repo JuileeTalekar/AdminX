@@ -60,6 +60,10 @@ const login = async (req, res) => {
     const isPasswordValid = await userExist.comparePassword(password);
 
     if (isPasswordValid) {
+
+      userExist.lastLogin = new Date(); // store the current time
+      await userExist.save(); // save the updated document
+
       res.status(200).json({
         message: "Login Successful",
         token: await userExist.generateToken(),
