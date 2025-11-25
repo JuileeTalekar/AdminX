@@ -8,6 +8,7 @@ import { Login } from "./pages/Login";
 import { Error } from "./pages/Error";
 import { Navbar} from "./components/Navbar";
 import { Logo } from "./pages/Logo";
+import Hook from "./pages/Hook";
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/logout" element={<Logo />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/Hooks" element={<Hook />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>

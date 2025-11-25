@@ -46,7 +46,7 @@ userSchema.pre("save", async function (next) {
 
 
 
-//Generating  JSON Web Token
+// Generating  JSON Web Token
 userSchema.methods.generateToken = async function () {
   console.log("token");
   try {
@@ -65,6 +65,14 @@ userSchema.methods.generateToken = async function () {
     console.error("Token Error: ", error);
   }
 };
+
+
+
+// userSchema.methods.generateToken = function () {
+//   const payload = { id: this._id.toString(), email: this.email }; // include id/email
+//   return jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: "1d" });
+// };
+
 
 userSchema.methods.comparePassword = async function (password) {
   return bcrypt.compare(password, this.password);

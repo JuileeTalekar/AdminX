@@ -43,6 +43,7 @@
         console.log("after login: ", responseData);
         // toast.success("Registration Successful");
         storeTokenInLS(responseData.token);
+        // console.log("Login Token:", responseData.token);
         navigate("/");
       }
     } catch (error) {
