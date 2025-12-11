@@ -1,4 +1,5 @@
 import { createContext, useContext , useState} from "react";
+import { useEffect } from "react";
 
 // create context
 export const AuthContext = createContext();
@@ -23,8 +24,42 @@ export const AuthProvider = ({ children }) => {
     return localStorage.removeItem("token");
   };
 
+
+// AUTHENTICATION 
+  // inside AuthProvider in Auth.jsx
+const [user, setUser] = useState(null);
+
+const userAuthentication = async () => {
+  if (!token) {
+    setUser(null);
+    return;
+  }
+  try {
+    const response = await fetch("http://localhost:5000/api/auth/user", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json(); // server returns { msg: userData }
+      setUser(data.userData);
+    } else {
+      setUser(null);
+      console.error("Error fetching user data");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+useEffect(() => {
+  userAuthentication();
+}, [token]); // refetch when token changes
+
   return (
-    <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser }}>
+    <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, user }}>
       {children}
     </AuthContext.Provider>
   );

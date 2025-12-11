@@ -58,10 +58,8 @@ export const Home = () => {
             <p>We are here to help you</p>
             <h1>Get Started Today</h1>
             <p>
-              Ready to take the first step towards a more efficient and secure
-              IT infrastructure? Contact us today for a free consultation and
-              let's discuss how Thapa Technical can help your business thrive in
-              the digital age.
+              JustinTime Solutions is a forward-thinking technology company dedicated to delivering innovative digital solutions that empower businesses and individuals alike. Specializing in web and mobile applications, software development, and cutting-edge IT services, JustinTime Solutions
+               focuses on creating seamless, user-friendly experiences while leveraging the latest technologies
             </p>
             <div className="btn btn-group">
               <a href="/contact">

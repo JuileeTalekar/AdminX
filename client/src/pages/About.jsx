@@ -1,7 +1,26 @@
 import { NavLink } from "react-router-dom";
 import { Analytics } from "../components/Analytics";
+import { useState } from "react";
+import{useAuth} from"../store/Auth.jsx";
+import { useEffect } from "react";
+
+
+ 
+
 
 export const About = () => {
+  const { user } = useAuth();
+  const [About , setAbout] = useState({username: ""});
+
+ useEffect(() => {
+     if (user && user.username) {
+       setAbout({
+         username: user.username,
+       });
+     }
+   }, [user]); // Only run when user changes
+
+
   return (
     <>
       <main>
@@ -10,6 +29,8 @@ export const About = () => {
             <div className="hero-content">
               {/* <p>We care to cure your Health</p> */}
 
+
+            <p>Welcome {About.username} &hearts;</p>
               <h1>Why Choose Us? </h1>
               <p>
                 Expertise: Our team consists of experienced IT professionals who

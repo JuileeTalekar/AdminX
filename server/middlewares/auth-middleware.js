@@ -11,25 +11,23 @@ const authMiddleware = async (req, res, next) => {
       .json({ message: "Unauthorized HTTP, Token not provided" });
   }
 
-  // Assuming token is in the format "Bearer <jwtToken>, Removing the "Bearer" prefix"
-//   const jwtToken = token.replace("Bearer", "").trim();
-//   console.log(jwtToken);
-
-  console.log("token from auth middleware:", token);
+  
+  const jwtToken = token.replace("Bearer", "").trim();
+  console.log(jwtToken);
 
   try {
     // Verifying the token
-    // const isVerified = jwt.verify(jwtToken, process.env.JWT_SECRET_KEY);
-    // console.log(isVerified);
+    const isVerified = jwt.verify(jwtToken, process.env.JWT_SECRET_KEY);
+    console.log(isVerified);
 
-    // // getting the complete user details & also we don't want password to be sent
-    // const userData = await User.findOne({ email: isVerified.email }).select({
-    //   password: 0,
-    // });
+    // getting the complete user details & also we don't want password to be sent
+    const userData = await User.findOne({ email: isVerified.email }).select({
+      password: 0,
+    });
 
-    // req.token = token;
-    // req.user = userData;
-    // req.userID = userData._id;
+    req.token = token;
+    req.user = userData;
+    req.userID = userData._id;
 
     // Move on to the next middleware or route handler
     next();
