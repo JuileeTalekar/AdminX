@@ -83,6 +83,12 @@ li {
   grid-template-columns: repeat(2, 1fr);
 }
 
+.grid-three-column {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .grid-four-cols {
   grid-template-columns: repeat(4, 1fr);
 }
@@ -599,6 +605,8 @@ a.active {
   background: var(--btn-color);
   color: #fff;
 }
+
+
 
 
 

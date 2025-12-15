@@ -11,10 +11,11 @@ const validate = (schema) => async (req, res, next) => {
     // console.log(message);
     // res.status(422).json({ message });
     //next(message);
+    // err.issues.map((curElem) => curElem.message);
     // console.log(err);
     const status = 422;
     const message = "Fill the input properly";
-    const extraDetails = err.issues.map((curElem) => curElem.message);
+    const extraDetails = err.errors[0].message; 
 
     const error = {
       status,
@@ -22,7 +23,8 @@ const validate = (schema) => async (req, res, next) => {
       extraDetails,
     };
 
-    next(extraDetails);
+    // next(extraDetails);
+    next(error);
   }
 };
 
