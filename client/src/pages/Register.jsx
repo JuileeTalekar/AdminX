@@ -1,6 +1,7 @@
   import { useState } from "react";
   // import {useNavigate} from 'react-router-dom';
   import { useAuth } from "../store/Auth.jsx";
+  import { toast } from "react-toastify";
  export const Register = () => {
    
     const [user, setUser] = useState({
@@ -39,9 +40,11 @@
       });
       console.log("response data : ", response);
 
+      const responseData = await response.json();
+
       if (response.ok) {
-        const responseData = await response.json();
-        alert("registration successful");
+        
+        toast.success("registration successful");
         // token stored in local storage
         // localStorage.setItem("token", responseData.token);
         storeTokenInLS(responseData.token);
@@ -49,8 +52,12 @@
         setUser({ username: "", email: "", phone: "", password: "" });
         // navigate("/login");
         console.log(responseData);
-      } else {
-        console.log("error inside response ", "error");
+      } 
+      else {
+        // Show BOTH message and details so you know what's wrong
+        const msg = responseData.extraDetails ?  responseData.extraDetails : responseData.message || "Registration failed";
+        toast.error(msg);
+        console.log("Validation Error:", responseData); 
       }
     } catch (error) {
       console.error("Error", error);

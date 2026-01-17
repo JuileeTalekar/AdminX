@@ -9,13 +9,13 @@ const home = async (req, res) => {
   }
 };
 
-const register = async (req, res) => {
+const register = async (req, res, next) => {
   try {
     const { username, email, phone , password } = req.body;
      const userExist = await User.findOne({ email: email });
 
     if (userExist) {
-      return res.status(400).json({ msg: "email already exists" });
+      return res.status(400).json({ message: "email already exists" });
     }
 
    // hashing password
@@ -41,12 +41,13 @@ const userCreated = await User.create({
 
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
+    next(error);  // ✅ now next is defined
   }
 };
 
 
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 

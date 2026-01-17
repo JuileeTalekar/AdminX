@@ -1,30 +1,23 @@
-
-// schema is signupschema 
 const validate = (schema) => async (req, res, next) => {
   try {
     const parseBody = await schema.parseAsync(req.body);
     req.body = parseBody;
-    return next();
+    next(); // go to controller
   } catch (err) {
+    let extraDetails = "Invalid input";
 
-    // const message = err.errors[0].message;
-    // console.log(message);
-    // res.status(422).json({ message });
-    //next(message);
-    // err.issues.map((curElem) => curElem.message);
-    // console.log(err);
-    const status = 422;
-    const message = "Fill the input properly";
-    const extraDetails = err.errors[0].message; 
+    if (err.errors && err.errors.length > 0) {
+      extraDetails = err.errors[0].message;
+    } else if (err.issues && err.issues.length > 0) {
+      extraDetails = err.issues[0].message;
+    }
 
-    const error = {
-      status,
-      message,
+    // 👉 Forward error to error middleware
+    next({
+      status: 422,
+      message: "Fill the input properly",
       extraDetails,
-    };
-
-    // next(extraDetails);
-    next(error);
+    });
   }
 };
 
