@@ -607,6 +607,7 @@ a.active {
 }
 
 
+/* ...existing code... */
 
 /** -----------------------
 ** Admin Users Section CSS
@@ -618,7 +619,7 @@ a.active {
 
 .admin-users table {
   background: #fff;
-  background: linear-gradient(180deg, var(--slate-700), var(--slate-800)); /* Matches your theme */
+  /* background: linear-gradient(180deg, var(--slate-700), var(--slate-800));  */
   width: 100%;
   border-collapse: collapse; /* Cleaner borders */
   border-radius: 1rem;
@@ -626,20 +627,23 @@ a.active {
   box-shadow: 0 12px 30px rgba(2, 6, 23, 0.12);
 }
 
-/* Header Styling */
+/* Header Styling - Light Theme */
 .admin-users table thead th {
-  background-color: var(--dark-color);
-  color: var(--bg-color);
+  /* background-color: var(--dark-color); */
+  background-color: var(--slate-800); /* Lighter background */
+  color: var(--dark-color); /* Dark text for contrast */
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: capitalize;
   text-align: left;
   padding: 2rem 3rem;
   letter-spacing: 0.1rem;
+  border-bottom: 2px solid rgba(0,0,0,0.08); /* Subtle separator */
 }
 
 /* Body Row Styling */
 .admin-users table tbody tr {
+  background-color: #fff;
   transition: all 0.2s ease-in-out;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -650,7 +654,7 @@ a.active {
 
 /* Hover effect for rows */
 .admin-users table tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--slate-700); /* Subtle hover highlight */
 }
 
 /* Cell Styling */
@@ -680,12 +684,13 @@ a.active {
   background-color: var(--btn-color);
   color: #fff;
   text-decoration: none;
+  box-shadow: 0 4px 6px rgba(100, 108, 255, 0.2);
 }
 
 /* Delete Button Style */
 .btn-delete {
   background-color: transparent;
-  color: #d32f2f; /* Red color for delete */
+  color: #d32f2f; /* Red text */
   border: 0.1rem solid #d32f2f;
   padding: 0.6rem 1.6rem;
   font-size: 1.6rem;
@@ -693,95 +698,14 @@ a.active {
   cursor: pointer;
   width: auto; /* Reset generic button width */
   margin-top: 0; /* Reset generic button margin */
-  transition: all 
-}
-/** -----------------------
-** Admin Users Section CSS
-** -------------------------  */
-
-.admin-users-section {
-  padding: 3.2rem 0;
-}
-
-.admin-users table {
-  background: #fff;
-  background: linear-gradient(180deg, var(--slate-700), var(--slate-800)); /* Matches your theme */
-  width: 100%;
-  border-collapse: collapse; /* Cleaner borders */
-  border-radius: 1rem;
-  overflow: hidden; /* Ensures rounded corners work on header */
-  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.12);
-}
-
-/* Header Styling */
-.admin-users table thead th {
-  background-color: var(--dark-color);
-  color: var(--bg-color);
-  font-size: 2rem;
-  font-weight: 600;
-  text-transform: capitalize;
-  text-align: left;
-  padding: 2rem 3rem;
-  letter-spacing: 0.1rem;
-}
-
-/* Body Row Styling */
-.admin-users table tbody tr {
-  transition: all 0.2s ease-in-out;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.admin-users table tbody tr:last-child {
-  border-bottom: none;
-}
-
-/* Hover effect for rows */
-.admin-users table tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-}
-
-/* Cell Styling */
-.admin-users table td {
-  font-size: 1.6rem;
-  color: var(--dark-color);
-  padding: 1.6rem 3rem;
-}
-
-/* --- Buttons --- */
-
-/* Edit Link Style */
-.btn-edit {
-  display: inline-block;
-  text-decoration: none;
-  background-color: transparent;
-  color: var(--btn-color);
-  border: 0.1rem solid var(--btn-color);
-  padding: 0.6rem 1.6rem;
-  font-size: 1.6rem;
-  border-radius: 0.5rem;
   transition: all 0.3s ease;
-  font-weight: 500;
+  text-transform: capitalize;
 }
 
-.btn-edit:hover {
-  background-color: var(--btn-color);
+/* Delete Button Hover - Turns Solid Red */
+.btn-delete:hover {
+  background-color: #d32f2f;
   color: #fff;
-  text-decoration: none;
+  border-color: #d32f2f;
+  box-shadow: 0 4px 6px rgba(211, 47, 47, 0.2);
 }
-
-/* Delete Button Style */
-.btn-delete {
-  background-color: transparent;
-  color: #d32f2f; /* Red color for delete */
-  border: 0.1rem solid #d32f2f;
-  padding: 0.6rem 1.6rem;
-  font-size: 1.6rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  width: auto; /* Reset generic button width */
-  margin-top: 0; /* Reset generic button margin */
-  transition: all 
-}
-
-
-
