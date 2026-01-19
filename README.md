@@ -42,7 +42,7 @@ To access the Admin Dashboard features, use the following credentials:
 
 | Type | Username | Email | Password |
 | :--- | :--- | :--- | :--- |
-| **Admin** | **Admin123@** | **admin@gmail.com** | *Admin123@* |
+| **Admin** | **Admin** | **admin@gmail.com** | *Admin123@* |
 
 > **Note:** Ensure that in your MongoDB database, the `isAdmin` field for this user is set to `true`.
 
@@ -116,5 +116,6 @@ AdminX/
 - **GET** `/api/admin/users` - Get all users (Admin Only)
 - **DELETE** `/api/admin/users/delete/:id` - Delete user (Admin Only)
 - **PATCH** `/api/admin/contacts/update/:id` - Update contact query (Admin Only)
+
 
 
