@@ -709,3 +709,56 @@ a.active {
   border-color: #d32f2f;
   box-shadow: 0 4px 6px rgba(211, 47, 47, 0.2);
 }
+
+/* =========================================
+   RESPONSIVE DESIGN FIXES
+   ========================================= */
+
+/* Make tables scrollable on small screens */
+.admin-users {
+  overflow-x: auto;
+  padding-bottom: 2rem;
+}
+
+/* Base Font Size Adjustment */
+@media (max-width: 998px) {
+  html {
+    font-size: 56.25%; /* 1rem = 9px */
+  }
+
+  .container {
+    padding: 3.2rem 3.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 50%; /* 1rem = 8px */
+  }
+
+  .grid-two-cols,
+  .grid-three-column,
+  .grid-four-cols {
+    grid-template-columns: 1fr;
+    gap: 3.2rem;
+  }
+
+  /* Make header smaller on mobile */
+  h1 {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Fix container padding on very small screens */
+  .container {
+    padding: 2.4rem 2rem;
+  }
+  
+  /* Stack flex containers in headers if they aren't already */
+  header .container {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+}

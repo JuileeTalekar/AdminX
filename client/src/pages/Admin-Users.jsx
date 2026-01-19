@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../store/Auth";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom"; 
 
 const AdminUsers = () => {
   const { AuthorizationToken } = useAuth();
@@ -22,8 +22,23 @@ const AdminUsers = () => {
   };
 
   // Define delete function (logic to be implemented later)
-  const deleteUser = (id) => {
+  const deleteUser = async(id) => {
+    try{
     console.log("Delete user:", id);
+    const responce = await fetch(`http://localhost:5000/api/admin/users/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: AuthorizationToken,
+        },
+    });
+
+    const data = await responce.json();
+    console.log(data);
+    // Refresh the users list after deletion
+    getAllUsersData();
+  } catch(error){
+    console.log("Error while deleting user:", error);
+  }
   };
 
   useEffect(() => {

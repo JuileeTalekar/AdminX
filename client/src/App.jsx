@@ -13,13 +13,13 @@ import AdminLayout from "./components/layouts/Admin-Layout";
 import AdminUsers from "./pages/Admin-Users";
 import AdminContacts from "./pages/Admin-Contacts";
 import Hook from "./pages/Hook";
-
+import { AdminUpdate } from "./pages/Admin-Update"; 
+import { AdminContactUpdate } from "./pages/Admin-Contact-Update";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        
        
         <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
@@ -33,11 +33,13 @@ const App = () => {
             <Route path="*" element={<Error />} />
         </Route>
 
-        {/* ADMIN ROUTES (No Public Navbar) */}
+        {/* ADMIN ROUTES */}
         <Route path="/admin" element={<AdminLayout />}>
-          <Route path="/admin/users" element={<AdminUsers/>}/>
-          <Route path="/admin/contacts" element={<AdminContacts/>}/> 
-          <Route path="/admin/service" element={<Service/>}/>
+          <Route path="users" element={<AdminUsers/>}/>
+          <Route path="contacts" element={<AdminContacts/>}/> 
+          <Route path="service" element={<Service/>}/>
+          <Route path="users/:id/edit" element={<AdminUpdate/>}/>
+          <Route path="contacts/:id/edit" element={<AdminContactUpdate/>}/>  
         </Route>
 
       </Routes>
